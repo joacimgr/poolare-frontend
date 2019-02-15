@@ -1,0 +1,16 @@
+version: '3'
+services:
+  angular:
+    image: 'node:alpine'
+    user: 'node'
+    container_name: poolare-frontend
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_PREFIX=/home/node/.npm-global
+      - PATH=$PATH:/home/node/.npm-global/bin
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - '4200:4200'
+    command: 'sh -c "npm install -g @angular/cli && npm install && ng serve --host 0.0.0.0"'

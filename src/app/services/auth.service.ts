@@ -36,6 +36,7 @@ export class AuthService {
     const credential = firebase.auth.EmailAuthProvider.credential( email, password );
     firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
       // Send idToken to backend with http
+
     }).catch(function(error) {
       // Handle error
     });
