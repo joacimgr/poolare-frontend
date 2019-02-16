@@ -2,26 +2,32 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../model/user";
 import {Observable} from "rxjs";
-import IdTokenResult = firebase.auth.IdTokenResult;
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    'Content-Type': 'application/json'
   })
 };
-
 
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Backend @ Erik's place
+ * baseIP 192.168.0.11:
+ * friend 8180
+ * users 8280
+ * game 8380
+ *
+ */
 export class PoolarebackendService {
-  private BASE_URL = 'localhost:8090';
+  private BASE_URL = 'http://172.28.0.2:8080/api/';
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  constructor(private http: HttpClient) { }
-
-  addUser(idToken: IdTokenResult): Observable<User> {
-    const url = `${this.BASE_URL}/users/`;
-
-    return this.http.post<User>(this.BASE_URL, idToken, httpOptions)
+  getUser(token: string): Observable<User> {
+     return this.http.get<User>(`${this.BASE_URL}users/user/${token}`, httpOptions);
   }
 }

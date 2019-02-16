@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 @Injectable()
 export class AuthService {
   private user: Observable<firebase.User>;
-  private userDetails: firebase.User = null;
+  public userDetails: firebase.User = null;
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
@@ -28,18 +28,13 @@ export class AuthService {
       return true;
     }
   }
+
   logout() {
     this._firebaseAuth.auth.signOut()
-      .then((res) => this.router.navigate(['/']));
+      .then((res) => this.router.navigate(['/login']));
   }
   signInRegular(email, password) {
     const credential = firebase.auth.EmailAuthProvider.credential( email, password );
-    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      // Send idToken to backend with http
-
-    }).catch(function(error) {
-      // Handle error
-    });
     return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password);
   }
 

@@ -22,9 +22,14 @@
     "angularfire2": "latest",
     "core-js": "^2.5.4",
     "firebase": "^5.5.0",
+    "ng-retrofit": "^1.0.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "@angular/http": "latest",
+    "@ng-bootstrap/ng-bootstrap": "latest",
+    "angular-bootstrap-md": "^7.3.0",
+    "bootstrap": "^4.2.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.1",
